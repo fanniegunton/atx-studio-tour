@@ -3,12 +3,26 @@ const path = require("path")
 const { get } = require("axios")
 const { parse } = require("node-html-parser")
 
+/**
+ * This script imports from the `transformData` output and enhances it with
+ * data from the studio tour website. Once finished, the -enhanced.ndjson file
+ * can be imported into Sanity like this:
+ *
+ *   sanity dataset import data/west-enriched.ndjson production --replace
+ *
+ */
+
+const datasetPrefix = "west"
+
 // workaround lack of top-level await in Node 16
 ;(async () => {
   const artistData = (
-    await fs.readFile(path.resolve(__dirname, "../data/west-output.ndjson"), {
-      encoding: "utf-8",
-    })
+    await fs.readFile(
+      path.resolve(__dirname, `../data/${datasetPrefix}-output.ndjson`),
+      {
+        encoding: "utf-8",
+      }
+    )
   )
     .split("\n")
     .filter(Boolean)
@@ -69,7 +83,7 @@ const { parse } = require("node-html-parser")
   console.debug(newData)
 
   return fs.writeFile(
-    path.resolve(__dirname, "../data/west-enriched.ndjson"),
+    path.resolve(__dirname, `../data/${datasetPrefix}-enriched.ndjson`),
     newData.map((row) => JSON.stringify(row)).join("\n")
   )
 })()
