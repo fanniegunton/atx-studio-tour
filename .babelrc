@@ -1,0 +1,32 @@
+{
+  "plugins": [
+    "@emotion/babel-plugin",
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic",
+        "importSource": "@emotion/react",
+        "targets": {
+          "browsers": [">3%", "not dead"]
+        }
+      }
+    ],
+    [
+      "@babel/preset-env",
+      {
+        "modules": "commonjs",
+        "targets": {
+          "node": "8",
+          "chrome": "59",
+          "safari": "10",
+          "firefox": "56",
+          "edge": "14"
+        }
+      }
+    ]
+  ]
+}

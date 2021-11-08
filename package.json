@@ -1,0 +1,46 @@
+{
+  "name": "atx-studio-tour-map",
+  "private": true,
+  "author": "Fannie E Gunton <fanniegunton@gmail.com>",
+  "scripts": {
+    "develop": "sanity start",
+    "transform": "node data/transformData.js"
+  },
+  "dependencies": {
+    "@sanity/base": "^2.21.9",
+    "@sanity/core": "^2.21.8",
+    "@sanity/default-layout": "^2.21.9",
+    "@sanity/default-login": "^2.21.9",
+    "@sanity/desk-tool": "^2.21.9",
+    "@sanity/vision": "^2.21.9",
+    "axios": "^0.24.0",
+    "node-html-parser": "^5.1.0",
+    "prop-types": "^15.7",
+    "react": "^17.0",
+    "react-dom": "^17.0",
+    "sanity-pills": "^1.10.0",
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/eslint-parser": "^7.15.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/preset-react": "^7.12.10",
+    "@emotion/babel-plugin": "^11.0.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.1",
+    "theredoc": "^1.0.0"
+  },
+  "resolutions": {
+    "chokidar": "^3.4.0"
+  }
+}
