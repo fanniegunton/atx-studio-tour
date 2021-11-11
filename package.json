@@ -4,7 +4,7 @@
   "author": "Fannie E Gunton <fanniegunton@gmail.com>",
   "scripts": {
     "develop": "sanity start",
-    "transform": "node data/transformData.js"
+    "transform": "node scripts/transformData.js"
   },
   "dependencies": {
     "@sanity/base": "^2.21.9",
