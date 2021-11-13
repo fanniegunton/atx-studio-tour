@@ -2,7 +2,7 @@ const fs = require("fs")
 const path = require("path")
 
 // Update me for each run
-const stopType = "west"
+const stopType = "east"
 
 const data = fs.readFileSync(
   path.resolve(__dirname, `../data/${stopType}-input.txt`),

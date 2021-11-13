@@ -12,7 +12,7 @@ const { parse } = require("node-html-parser")
  *
  */
 
-const datasetPrefix = "west"
+const datasetPrefix = "east"
 
 // workaround lack of top-level await in Node 16
 ;(async () => {
@@ -42,8 +42,10 @@ const datasetPrefix = "west"
 
     const category = doc.querySelector(".navbar + .section h5")?.childNodes[0]
       ?.text
-    const mainImage = doc.querySelector(".artist-main-image-container img")
-      .attributes.src
+    const mainImage = (
+      doc.querySelector(".artist-main-image-container img") ||
+      doc.querySelector("img.product-image")
+    )?.attributes.src
     const artistPhoto = doc.querySelector(".about-bg img").attributes.src
     const bio = doc.querySelector(
       ".about-artist-grid div:nth-child(2) .w-richtext"
@@ -65,10 +67,13 @@ const datasetPrefix = "west"
         website,
         bio,
         artistStatement,
-        mainImage: {
-          _type: "image",
-          _sanityAsset: `image@${mainImage}`,
-        },
+        mainImage:
+          mainImage && mainImage !== "https://global-uploads.webflow.com"
+            ? {
+                _type: "image",
+                _sanityAsset: `image@${mainImage}`,
+              }
+            : undefined,
         artistPhoto:
           artistPhoto && artistPhoto !== "https://global-uploads.webflow.com"
             ? {
@@ -94,10 +99,12 @@ const slugify = (name) => {
     .replace(/ñ/g, "n")
     .replace(/é/g, "e")
     .replace(/ó/g, "o")
+    .replace(/č/g, "c")
+    .replace(/ú/g, "u")
     .replace(" | ", "-")
     .split(",")[0]
-    .replace(/[.&]/g, "-")
-    .replace(/[^a-z-]+/g, "")
+    .replace(/[.&/+]/g, "-")
+    .replace(/[^a-z0-9-]+/g, "")
     .trim()
 
   return customSlugs[slug] || slug
@@ -119,6 +126,8 @@ const customSlugs = {
   teodorapogonat: "teodorapogonatcircleccommunitycenter",
   rheapettit: "rheapettitcircleccommunitycenter",
   meenamatai: "meenamataicircleccommunitycenter",
+  betelhemmakonnenchristinacolemandeborahrobertstammierubin:
+    "betelhemmakonnen-christinacoleman-deborahroberts-tammierubin",
 }
 
 const cachedFetch = async ({ url, stopNumber }) => {
