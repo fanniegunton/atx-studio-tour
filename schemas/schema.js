@@ -27,6 +27,9 @@ export default createSchema({
           type: "url",
         },
         website: { type: "url" },
+        geoLocation: {
+          type: "geopoint",
+        },
         bio: {
           type: "text",
         },
